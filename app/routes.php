@@ -20,7 +20,12 @@ Route::get('/', function()
 		$appliancesDetails[$appliances[$key]->id] = $appliances[$key]->name;
 	}
 
-	return View::make('index')->with('appliances', $appliancesDetails);
+	$schedule = Schedule::getSchedule();
+
+	return View::make('index')
+			->with('appliances', $appliancesDetails)
+			->with('schedule', $schedule);
 });
 Route::post('/save/timer', 'TimerController@store');
 Route::post('/save/remote', 'RemoteController@store');
+Route::get('/delete/schedule/{id}', 'TimerController@destroy');

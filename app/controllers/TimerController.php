@@ -41,7 +41,7 @@ class TimerController extends \BaseController {
 
 	 	$saved = Schedule::saveToSchedule($data);
 	 	if ($saved) {
-	 		return Redirect::to('/')->with('success', Lang::get('timer.text_success_api'));
+	 		return Redirect::to('/')->with('success', Lang::get('timer.text_success_saved'));
 	 	} else {
 	 		return Redirect::to('/')->with('error', Lang::get('timer.text_error_saved'));
 	 	}
@@ -54,7 +54,7 @@ class TimerController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show()
 	{
 		//
 	}
@@ -92,7 +92,13 @@ class TimerController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$deleted = Schedule::deleteSchedule($id);
+
+		if ($deleted) {
+	 		return Redirect::to('/')->with('success', Lang::get('timer.text_success_delete'));
+	 	} else {
+	 		return Redirect::to('/')->with('error', Lang::get('timer.text_error_delete'));
+	 	}
 	}
 
 

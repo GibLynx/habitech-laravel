@@ -1,15 +1,16 @@
 @extends('layout.default')
 
 @section('content')
-  <ul class="tab">
+<ul class="tab">
     <li><a href="#" class="tablinks" onclick="openTab(event, 'Timer')"><b>Timer</b></a></li>
     <li><a href="#" class="tablinks" onclick="openTab(event, 'RemoteControl')"><b>Remote Control</b></a></li>
-    </ul>
+    <li><a href="#" class="tablinks" onclick="openTab(event, 'Schedule')"><b>Schedule</b></a></li>
+</ul>
 
-  <div id="Timer" class="tabcontent">
+<div id="Timer" class="tabcontent">
     {{ Form::open(array('url' => '/save/timer', 'method' => 'POST', 'class' => 'form',  'enctype' => 'multipart/form-data')) }}
 
-      <form>
+    <form>
         <div class="form-group ">
           <label for="appliances">Appliances</label>
           {{ Form::select('appliance',
@@ -131,9 +132,9 @@
         </div>
       </form>
     {{ Form::close() }}
-  </div>
+</div>
 
-  <div id="RemoteControl" class="tabcontent">
+<div id="RemoteControl" class="tabcontent">
     {{ Form::open(array('url' => '/save/remote', 'method' => 'POST', 'class' => 'form',  'enctype' => 'multipart/form-data')) }}
       <form>
         <div class="form-group ">
@@ -154,10 +155,36 @@
         </div>
       </form>
     {{ Form::close() }}
-  </div>
-  @if (Session::has('success'))
+</div>
+
+<div id="Schedule" class="tabcontent">
+    <table class = "table">
+        <th>Appliance</th>
+        <th>Date and Time</th>
+        <th>Switch</th>
+        <th>Action</th>
+        @foreach($schedule as $key => $value)
+        <tr>
+            <td>{{$schedule[$key]->name}}</td>
+            <td>{{$schedule[$key]->when}}</td>
+            <td>
+                @if($schedule[$key]->action == 1)
+                    On
+                @else
+                    Off
+                @endif
+            </td>
+            <td><a href="./delete/schedule/{{$schedule[$key]->id}}">delete</a></td>
+        </tr>
+
+        @endforeach
+    </table>
+</div>
+
+@if (Session::has('success'))
     <div class = "alert alert-success" role = "alert">{{Session::get('success')}}</div>
-  @elseif (Session::has('error'))
+@elseif (Session::has('error'))
     <div class = "alert alert-error" role = "alert"><div>{{Session::get('error')}}</div>
-  @endif
+@endif
+
 @stop

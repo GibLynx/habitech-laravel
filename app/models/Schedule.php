@@ -25,5 +25,24 @@ class Schedule extends Eloquent {
 
     	return false;
     }
+
+    public static function getSchedule() {
+    	$schedule = DB::table('schedule')
+    				->select('schedule.id'
+    					, 'appliance.name'
+    					, 'schedule.when'
+    					, 'schedule.action')
+    				->leftJoin('appliance', 'appliance.id', '=', 'schedule.appliance_id')
+    				->orderBy('schedule.when', 'desc')
+    				->get();
+
+    	return $schedule;
+    }
+
+    public static function deleteSchedule($id) {
+		$deleted = DB::table('schedule')->where('id', '=', $id)->delete();
+
+    	return $deleted;
+    }
 }
 ?>

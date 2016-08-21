@@ -15,5 +15,7 @@ return array(
 
 	'text_success_saved' => 'Settings for Timer saved.',
 	'text_error_saved' => 'Can\'t save the information',
+	'text_success_delete' => 'Schedule deleted',
+	'text_error_delete' => 'Error in deleting schedule',
 
 );
