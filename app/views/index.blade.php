@@ -158,6 +158,6 @@
   @if (Session::has('success'))
     <div class = "alert alert-success" role = "alert">{{Session::get('success')}}</div>
   @elseif (Session::has('error'))
-    <div class = "alert alert-error" role = "alert">{{<div>{{Session::get('error')}}</div>
+    <div class = "alert alert-error" role = "alert"><div>{{Session::get('error')}}</div>
   @endif
 @stop
