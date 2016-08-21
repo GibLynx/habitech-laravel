@@ -2,8 +2,8 @@
 
 @section('content')
   <ul class="tab">
-    <li><a href="#" class="tablinks" onclick="openCity(event, 'Timer')"><b>Timer</b></a></li>
-    <li><a href="#" class="tablinks" onclick="openCity(event, 'Remote Control')"><b>Remote Control</b></a></li>
+    <li><a href="#" class="tablinks" onclick="openTab(event, 'Timer')"><b>Timer</b></a></li>
+    <li><a href="#" class="tablinks" onclick="openTab(event, 'RemoteControl')"><b>Remote Control</b></a></li>
     </ul>
 
   <div id="Timer" class="tabcontent">
@@ -133,7 +133,7 @@
     {{ Form::close() }}
   </div>
 
-  <div id="Remote Control" class="tabcontent">
+  <div id="RemoteControl" class="tabcontent">
     {{ Form::open(array('url' => '/save/remote', 'method' => 'POST', 'class' => 'form',  'enctype' => 'multipart/form-data')) }}
       <form>
         <div class="form-group ">

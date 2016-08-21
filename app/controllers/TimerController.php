@@ -41,7 +41,7 @@ class TimerController extends \BaseController {
 
 	 	$saved = Schedule::saveToSchedule($data);
 	 	if ($saved) {
-	 		return Redirect::to('/')->with('success', Lang::get('timer.text_success_saved'));
+	 		return Redirect::to('/')->with('success', Lang::get('timer.text_success_api'));
 	 	} else {
 	 		return Redirect::to('/')->with('error', Lang::get('timer.text_error_saved'));
 	 	}
